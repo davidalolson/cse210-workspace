@@ -7,12 +7,9 @@ class Program
         // Variables
         int userGuess = 0; // define init to 0
 
-        // IO
-        Console.Write("What is the magic number? ");
-        string rawMagicNumber = Console.ReadLine();
-
-        // Parse
-        int magicNumber = int.Parse(rawMagicNumber);   
+        // Random element
+        Random randomGenerator = new Random();
+        int magicNumber = randomGenerator.Next(1,100); 
 
         // Loop
         while (userGuess != magicNumber)
