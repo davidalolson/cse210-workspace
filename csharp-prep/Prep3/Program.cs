@@ -5,32 +5,47 @@ class Program
     static void Main(string[] args)
     {
         // Variables
-        int userGuess = 0; // define init to 0
+        string ui = "yes";
 
-        // Random element
-        Random randomGenerator = new Random();
-        int magicNumber = randomGenerator.Next(1,100); 
-
-        // Loop
-        while (userGuess != magicNumber)
+        // Master loop
+        while (ui == "yes")
         {
-        // IO
-            Console.Write("What is your guess? ");
-            string rawUserGuess = Console.ReadLine();
+            // Variables
+            int userGuess = 0; // ui init to 0
+            int countGuess = 0; // counter init to 0
 
-            // Parse     
-            userGuess = int.Parse(rawUserGuess);
+            // Random element
+            Random randomGenerator = new Random();
+            int magicNumber = randomGenerator.Next(1,100); 
 
-            // Hint logic
-            if(magicNumber > userGuess)
+            // Subroutine loop
+            while (userGuess != magicNumber)
             {
-                Console.WriteLine("Higher");
+                // IO
+                Console.Write("What is your guess? ");
+                string rawUserGuess = Console.ReadLine();
+
+                // Increment counter
+                countGuess++;
+
+                // Parse     
+                userGuess = int.Parse(rawUserGuess);
+
+                // Hint logic
+                if(magicNumber > userGuess)
+                {
+                    Console.WriteLine("Higher");
+                }
+                else if(magicNumber < userGuess)
+                {
+                    Console.WriteLine("Lower");
+                }
             }
-            else if(magicNumber < userGuess)
-            {
-                Console.WriteLine("Lower");
-            }
+
+            // Game over
+            Console.WriteLine($"You guessed it in {countGuess} attempts!");
+            Console.Write("Would you like to play again? ");
+            ui = Console.ReadLine();
         }
-        Console.WriteLine("You guessed it!");
     }
 }
