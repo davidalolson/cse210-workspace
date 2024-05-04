@@ -1,4 +1,5 @@
 using System;
+using System.IO.Enumeration;
 
 class Program
 {
@@ -44,6 +45,13 @@ class Program
 
             // display journal
             journal.DisplayAll();
+
+            // save to file routine
+            Console.Write("Please enter a filename for this journal: ");
+            string fileName = Console.ReadLine();
+
+            journal.SaveToFile(fileName);
+
         }
         
 

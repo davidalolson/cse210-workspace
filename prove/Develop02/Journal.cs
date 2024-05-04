@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
+using System.IO; 
 
 public class Journal
 {
@@ -22,9 +23,20 @@ public class Journal
             Console.WriteLine(entry._date);
         }
     }
-    public void SaveToFile(string file)
+    public void SaveToFile(string filename)
     {
-
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+            foreach (Entry entry in _entryList)
+            {
+                outputFile.WriteLine(entry._promptText);
+                outputFile.WriteLine(entry._entryText);
+                outputFile.WriteLine(entry._date);
+                outputFile.WriteLine();
+            }
+            
+        }
+        
     }
     public void LoadFromFile(string file)
     {
