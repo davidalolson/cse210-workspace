@@ -11,11 +11,16 @@ public class Journal
     }
     public void AddEntry(Entry newEntry)    // meathods
     {
-        
+        _entryList.Add(newEntry);
     }
     public void DisplayAll()
     {
-
+        foreach (Entry entry in _entryList)
+        {
+            Console.WriteLine(entry._promptText);
+            Console.WriteLine(entry._entryText);
+            Console.WriteLine(entry._date);
+        }
     }
     public void SaveToFile(string file)
     {

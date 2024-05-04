@@ -39,10 +39,11 @@ class Program
             DateTime theCurrentTime = DateTime.Now;
             entry._date = theCurrentTime.ToShortDateString();
 
-            // add entry to journal
-            journal._entryList.Add(entry);
+            // add entry to journal with AddEntry meathod
+            journal.AddEntry(entry);
 
-
+            // display journal
+            journal.DisplayAll();
         }
         
 
