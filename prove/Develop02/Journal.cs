@@ -5,7 +5,6 @@ using System.IO;
 public class Journal
 {
     public List<Entry> _entryList;          // attributes
-
     public Journal()                        // constructor
     {
         _entryList = new List<Entry>();
@@ -21,6 +20,7 @@ public class Journal
             Console.WriteLine(entry._promptText);
             Console.WriteLine(entry._entryText);
             Console.WriteLine(entry._date);
+            Console.WriteLine();
         }
     }
     public void SaveToFile(string filename)
@@ -38,9 +38,31 @@ public class Journal
         }
         
     }
-    public void LoadFromFile(string file)
+    public void LoadFromFile(string filename)
     {
+        _entryList.Clear();
+        
+        string[] lines = System.IO.File.ReadAllLines(filename);
 
+        for (int i = 0; i < lines.Length; i+=4)
+        {
+                    // utilize entry class for load
+                    Entry entry = new Entry();
+
+                    // load prompt
+                    entry._promptText = lines[i];
+
+                    // load entry text
+                    entry._entryText  = lines[i+1];
+
+                    // load date
+                    entry._date = lines[i+2];
+
+                    // add loaded entry to journal with AddEntry meathod
+                    AddEntry(entry);   
+        }
+
+        Console.WriteLine($"{filename} loaded!");
     }
     
 }

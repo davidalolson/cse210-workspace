@@ -1,5 +1,6 @@
 using System;
 using System.IO.Enumeration;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
@@ -24,33 +25,78 @@ class Program
         // set up journal class
         Journal journal = new Journal();
 
-        while(true)
+        // define commands
+        List<string> menuOption = ["Write", "Display", "Load", "Save", "Quit"];
+        int userCmd = 0; 
+
+        // welcome text
+        Console.WriteLine("Welcome to the Journal Program!");
+
+        while(userCmd != 5)
         {
-            // utilize entry class
-            Entry entry = new Entry();
-
-            // get a new prompt
-            entry._promptText = promptGenerator.GetRandomPrompt();
-
+            // menu
+            Console.WriteLine("Please select one of the following choices");
+            
+            // print out commands
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine($"{i+1}. {menuOption[i]}");
+            }
+            
             // IO
-            Console.WriteLine(entry._promptText);
-            entry._entryText  = Console.ReadLine();
+            Console.Write("What would you like to do?: ");
+            userCmd = int.Parse(Console.ReadLine());
 
-            // get date
-            DateTime theCurrentTime = DateTime.Now;
-            entry._date = theCurrentTime.ToShortDateString();
+            
 
-            // add entry to journal with AddEntry meathod
-            journal.AddEntry(entry);
+            if(userCmd != 5)
+            {
+                if(userCmd == 1)
+                {
+                    // utilize entry class
+                    Entry entry = new Entry();
 
-            // display journal
-            journal.DisplayAll();
+                    // get a new prompt
+                    entry._promptText = promptGenerator.GetRandomPrompt();
 
-            // save to file routine
-            Console.Write("Please enter a filename for this journal: ");
-            string fileName = Console.ReadLine();
+                    // IO
+                    Console.WriteLine(entry._promptText);
+                    Console.Write("\n> ");
+                    entry._entryText  = Console.ReadLine();
 
-            journal.SaveToFile(fileName);
+                    // get date
+                    DateTime theCurrentTime = DateTime.Now;
+                    entry._date = theCurrentTime.ToShortDateString();
+
+                    // add entry to journal with AddEntry meathod
+                    journal.AddEntry(entry);    
+                }
+                if(userCmd == 2)
+                {
+                    // display journal
+                    journal.DisplayAll();
+                }
+                if(userCmd == 3)
+                {
+                    // save to file routine
+                    Console.Write("Please speacify the file to load: ");
+                    Console.Write("\n> ");
+                    string fileName = Console.ReadLine();
+                    
+                    journal.LoadFromFile(fileName);
+
+ 
+                }
+                if (userCmd == 4)
+                {
+                    // save to file routine
+                    Console.Write("Please enter a filename for this journal: ");
+                    Console.Write("\n> ");
+                    string fileName = Console.ReadLine();
+
+                    journal.SaveToFile(fileName);
+                }
+            }
 
         }
         
