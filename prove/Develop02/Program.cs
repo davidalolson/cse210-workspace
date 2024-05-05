@@ -22,6 +22,10 @@ class Program
             "What is my goal for tomorrow?"
         ];
 
+        // set up directory class
+        Directory directory = new Directory();
+        directory.AddToDirectory("Directory:");
+
         // set up journal class
         Journal journal = new Journal();
 
@@ -78,9 +82,13 @@ class Program
                 }
                 if(userCmd == 3)
                 {
-                    // save to file routine
+                    // load from file routine
+
+                    directory.Display();
+
                     Console.Write("Please speacify the file to load: ");
                     Console.Write("\n> ");
+
                     string fileName = Console.ReadLine();
                     
                     journal.LoadFromFile(fileName);
@@ -93,7 +101,8 @@ class Program
                     Console.Write("Please enter a filename for this journal: ");
                     Console.Write("\n> ");
                     string fileName = Console.ReadLine();
-
+                    
+                    directory.AddToDirectory(fileName);
                     journal.SaveToFile(fileName);
                 }
             }

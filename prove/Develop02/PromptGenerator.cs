@@ -6,7 +6,7 @@ public class PromptGenerator
     {
         _promptList = new List<string>();
     }
-    public string GetRandomPrompt()             // meathods
+    public string GetRandomPrompt()             // methods
     {
         Random random = new Random();
         return _promptList[random.Next(0,9)];

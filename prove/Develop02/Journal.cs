@@ -9,7 +9,7 @@ public class Journal
     {
         _entryList = new List<Entry>();
     }
-    public void AddEntry(Entry newEntry)    // meathods
+    public void AddEntry(Entry newEntry)    // methods
     {
         _entryList.Add(newEntry);
     }
@@ -64,5 +64,4 @@ public class Journal
 
         Console.WriteLine($"{filename} loaded!");
     }
-    
 }
