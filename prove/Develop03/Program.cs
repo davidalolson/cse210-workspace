@@ -4,6 +4,9 @@ class Program
 {
     static void Main(string[] args)
     {
+        string userCmd = "";
+        int numberToHide = 2;
+
         // Jacob 6:12 O be wise; what can I say more?
         Reference reference1 = new Reference("Jacob",6,12);
         Scripture scripture1 = new Scripture(reference1, "O be wise; what can I say more?");
@@ -21,12 +24,25 @@ class Program
             keep the records, for it is according to the commandments of our fathers. And I 
             make an end.
             ");
+            
+        while (userCmd != "quit" && !scripture2.IsCompletelyHidden())
+        {
+            // Display scripture
+            Console.Clear();
+            Console.WriteLine(scripture2.GetDisplayText());
+                                         
+            Console.WriteLine("Press enter to continue or type 'quit' to finish:");
+            userCmd = Console.ReadLine();
 
-        // Display scripture
+            // hide random words
+            scripture2.HideRandomWords(numberToHide += 1);
+        }
+
+        // display hidden scripture
         Console.Clear();
         Console.WriteLine(scripture2.GetDisplayText());
-        // scripture2.GetDisplayText();                               
 
+        
 
     }
 }

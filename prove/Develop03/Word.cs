@@ -5,10 +5,12 @@ public class Word
     public Word(string text)
     {
         _text = text;
+        _isHidden = false;
     }
     public void Hide()
-    {
-
+    {   // convert word into _____ by splicing this line
+        _text = "________________________".Substring(0,_text.Length);
+        _isHidden = true;
     }
     public void Show()
     {
@@ -16,7 +18,7 @@ public class Word
     }
     public bool IsHidden()
     {
-        return true;
+        return _isHidden;
     }
     public string GetDisplayText()
     {

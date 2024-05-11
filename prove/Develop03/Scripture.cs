@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using System;
 
 public class Scripture
 {
@@ -21,7 +22,12 @@ public class Scripture
     }
     public void HideRandomWords(int numberToHide)
     {
+        Random random = new Random();
 
+        for(int i = 0; i < numberToHide; i++)
+        {
+            _words[random.Next(0, _words.Count())].Hide();
+        }
     }
     public string GetDisplayText()
     {   // combine list by breaking up _word list into individual classes and using the GetDisplayText method
@@ -29,6 +35,11 @@ public class Scripture
     }
     public bool IsCompletelyHidden()
     {
+        // check if any Word in _words contain false
+        if(_words.Any(word => !word.IsHidden()))
+        {
+            return false;
+        }
         return true;
     }
 
