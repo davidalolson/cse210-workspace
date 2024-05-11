@@ -20,6 +20,6 @@ public class Word
     }
     public string GetDisplayText()
     {
-        return "";
+        return _text;
     }
 }

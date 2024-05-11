@@ -1,4 +1,6 @@
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 public class Scripture
 {
@@ -6,6 +8,7 @@ public class Scripture
     private List<Word> _words; 
     public Scripture(Reference reference, string text)
     {
+        _reference = reference.GetDisplayText();
         _words = new List<Word>();
 
         string[] wordArray = text.Replace(" ", "$").Split("$", StringSplitOptions.RemoveEmptyEntries); // create delimiter and split
@@ -21,8 +24,8 @@ public class Scripture
 
     }
     public string GetDisplayText()
-    {
-        return "";
+    {   // combine list by breaking up _word list into individual classes and using the GetDisplayText method
+        return $"{_reference}\n{string.Join(" ", _words.Select(word => word.GetDisplayText()))}"; 
     }
     public bool IsCompletelyHidden()
     {
