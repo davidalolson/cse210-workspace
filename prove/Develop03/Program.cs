@@ -1,60 +1,81 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
     static void Main(string[] args)
     {
-        string userKey = "";
-        int numberOfWords = 1;
+        // global variables
+        string userKey = "";    // use for user input
+        int numberOfWords = 1; 
 
-        // Jacob 6:12 O be wise; what can I say more?
-        Reference reference1 = new Reference("Jacob",6,12);
-        Scripture scripture1 = new Scripture(reference1, "O be wise; what can I say more?");
+        // Default scripture
+        Reference reference = new Reference("Jacob",6,12);
+        Scripture scripture = new Scripture(reference, "O be wise; what can I say more?");
 
-        // Omni 1:8-9
+        // main program
+        while (userKey != "Escape")
+        {   
+            // switch scriptures
+            if(userKey == "UpArrow")
+            {
+                numberOfWords = 1;
+                reference = new Reference("Matthew", 22, 36, 39);
+                scripture = new Scripture(reference, 
+                    @"
+                    Master, which is the great commandment in the law?
 
-        Reference reference2 = new Reference("Omni",1,8,9);
-        Scripture scripture2 = new Scripture(reference2, 
-            @"
-            And it came to pass that I did deliver the plates unto my brother Chemish.
-            
-            Now I, Chemish, write what few things I write, in the same book with my brother; 
-            for behold, I saw the last which he wrote, that he wrote it with his own hand; and 
-            he wrote it in the day that he delivered them unto me. And after this manner we 
-            keep the records, for it is according to the commandments of our fathers. And I 
-            make an end.
-            ");
-            
-        while (userKey != "Escape" && !scripture2.IsCompletelyHidden())
-        {
+                    Jesus said unto him, Thou shalt love the Lord thy God with all 
+                    thy heart, and with all thy soul, and with all thy mind.
+
+                    This is the first and great commandment.
+
+                    And the second is like unto it, Thou shalt love thy neighbour 
+                    as thyself.
+                    ");
+            }
+            // switch scriptures
+            if(userKey == "DownArrow")
+            {
+                numberOfWords = 1;
+                reference = new Reference("1 Nephi",3,7);
+                scripture = new Scripture(reference, 
+                    @"
+                    And it came to pass that I, Nephi, said unto my father: I will go 
+                    and do the things which the Lord hath commanded, for I know that the 
+                    Lord giveth no commandments unto the children of men, save he shall 
+                    prepare a way for them that they may accomplish the thing which he 
+                    commandeth them.
+                    ");
+
+            }
+
             // Display scripture
-            Console.Clear();
-            Console.WriteLine(scripture2.GetDisplayText());
+            Console.Clear();    // clear console
+            Console.WriteLine(scripture.GetDisplayText());  // display updated scripture
                                          
-            Console.WriteLine("Press enter to continue or type 'quit' to finish:");
-            Console.WriteLine(numberOfWords);
-            userKey = Console.ReadKey().Key.ToString();
-
-            
+            Console.WriteLine("Press [Escape] to quit. Use arrow keys: \n      previous\n        [^]\nshow [<][V][>]  hide\n        next"); // display GUI
+            userKey = Console.ReadKey().Key.ToString(); // get keypress
 
             // hide random words
             if(userKey == "RightArrow")
             {
-                scripture2.HideRandomWords(numberOfWords += 1);
+                if(!scripture.IsCompletelyHidden())
+                {
+                    numberOfWords += 1; // increase the number of words hidden each time
+                }
+
+                scripture.HideRandomWords(numberOfWords); 
             }
             // show words
             if(userKey == "LeftArrow")
             {
                 if(numberOfWords > 1)
                 {
-                    numberOfWords -= 1;
+                    numberOfWords -= 1; // decrease the number of words to show each time
                 }
-                scripture2.ShowPreviousWords(numberOfWords);
+                scripture.ShowPreviousWords(numberOfWords);
             }
         }
-
-        // display hidden scripture
-        Console.Clear();
-        Console.WriteLine(scripture2.GetDisplayText());
     }
 }

@@ -1,7 +1,7 @@
 public class Word
 {
     private string _text;
-    private string _ogText;
+    private string _ogText; // save origional text
     private bool _isHidden;
     public Word(string text)
     {
