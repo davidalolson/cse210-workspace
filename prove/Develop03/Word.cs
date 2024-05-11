@@ -1,10 +1,12 @@
 public class Word
 {
     private string _text;
+    private string _ogText;
     private bool _isHidden;
     public Word(string text)
     {
         _text = text;
+        _ogText = text;
         _isHidden = false;
     }
     public void Hide()
@@ -14,7 +16,8 @@ public class Word
     }
     public void Show()
     {
-
+        _text = _ogText;
+        _isHidden = false;
     }
     public bool IsHidden()
     {

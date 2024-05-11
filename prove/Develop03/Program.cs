@@ -4,8 +4,8 @@ class Program
 {
     static void Main(string[] args)
     {
-        string userCmd = "";
-        int numberToHide = 2;
+        string userKey = "";
+        int numberOfWords = 1;
 
         // Jacob 6:12 O be wise; what can I say more?
         Reference reference1 = new Reference("Jacob",6,12);
@@ -25,24 +25,36 @@ class Program
             make an end.
             ");
             
-        while (userCmd != "quit" && !scripture2.IsCompletelyHidden())
+        while (userKey != "Escape" && !scripture2.IsCompletelyHidden())
         {
             // Display scripture
             Console.Clear();
             Console.WriteLine(scripture2.GetDisplayText());
                                          
             Console.WriteLine("Press enter to continue or type 'quit' to finish:");
-            userCmd = Console.ReadLine();
+            Console.WriteLine(numberOfWords);
+            userKey = Console.ReadKey().Key.ToString();
+
+            
 
             // hide random words
-            scripture2.HideRandomWords(numberToHide += 1);
+            if(userKey == "RightArrow")
+            {
+                scripture2.HideRandomWords(numberOfWords += 1);
+            }
+            // show words
+            if(userKey == "LeftArrow")
+            {
+                if(numberOfWords > 1)
+                {
+                    numberOfWords -= 1;
+                }
+                scripture2.ShowPreviousWords(numberOfWords);
+            }
         }
 
         // display hidden scripture
         Console.Clear();
         Console.WriteLine(scripture2.GetDisplayText());
-
-        
-
     }
 }
