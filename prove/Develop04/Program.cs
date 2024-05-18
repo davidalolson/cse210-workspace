@@ -32,6 +32,9 @@ class Program
         while(userCmd != "4")
         {
             // menu sequence
+            Console.Clear();
+
+            Console.WriteLine(" ---Mindfulness Program---\n");
             Console.WriteLine("Menu Options:\n    1. Start breathing activity\n    2. Start reflecting activity\n    3. Start listing activity\n    4. Quit");
             Console.Write("Select a choice from the menu: ");
             userCmd = Console.ReadLine();

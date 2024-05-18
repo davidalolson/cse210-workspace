@@ -1,7 +1,9 @@
 using System.ComponentModel;
+using System.Net;
 
 public class Activity
 {
+    public const int GLOBAL_SYNC_DELAY = 4;
     private string _name;
     private string _description;
     protected int _duration;
@@ -13,7 +15,7 @@ public class Activity
     public void DisplayStartingMessage()
     {
         Console.Clear();
-        
+
         Console.WriteLine($"Welcome to the {_name}");
         Console.WriteLine($"\n{_description}");
         Console.Write($"\nHow long, in seconds, would you like for your session? ");
@@ -23,14 +25,14 @@ public class Activity
         Console.Clear();
         
         Console.WriteLine("Get ready...");
-        ShowSpinner(5);
+        ShowSpinner(GLOBAL_SYNC_DELAY);
     }
     public void DisplayEndingMessage()
     {
         Console.WriteLine("\nWell done!!");
         
         Console.WriteLine($"\nYou have completed another {_duration} seconds of the {_name}");
-        ShowSpinner(5);
+        ShowSpinner(GLOBAL_SYNC_DELAY);
     }
     public void ShowSpinner(int seconds)
     {

@@ -13,26 +13,33 @@ class ReflectionActivity : Activity
 
         _questions = new List<string>();
         _questions = questions;
+
+        
     }
     public void Run()
     {
+        string testQuestion = "";
         DisplayStartingMessage();
 
-        Console.WriteLine("Consider the following prompt:\n");
+        Console.WriteLine("\nConsider the following prompt:\n");
         DisplayPrompt();
         Console.WriteLine("When you have something in mind, press enter to continue.");
         Console.ReadLine();
         
         Console.WriteLine("\nNow ponder on each of the following questions as they relate to this experience.");
         Console.Write("You may begin in: ");
-        ShowCountDown(5);
+        ShowCountDown(GLOBAL_SYNC_DELAY);
         Console.Clear();
 
         for(int i = _duration/5; i > 0; i--)
         {
-            DisplayQuestion();
-            ShowSpinner(5);
-            Console.WriteLine();
+            
+            if(testQuestion != "ABORT:EMPTY")
+            {
+                testQuestion = DisplayQuestion();
+                ShowSpinner(GLOBAL_SYNC_DELAY);
+                Console.WriteLine();
+            }
         }
 
         DisplayEndingMessage();
@@ -43,14 +50,25 @@ class ReflectionActivity : Activity
     }
     public string GetRandomQuestion()
     {
-        return _questions[random.Next(0, _questions.Count())];;
+        string question = "ABORT:EMPTY";
+        int idx = random.Next(0, _questions.Count());
+
+        if(_questions.Count() != 0)
+        {
+            question = _questions[idx];
+            _questions.RemoveAt(idx);
+        }
+
+        return question;
     }
     public void DisplayPrompt()
     {
-        Console.WriteLine($"--- {GetRandomPrompt()} ---\n");
+        Console.WriteLine($" --- {GetRandomPrompt()} ---\n");
     }
-    public void DisplayQuestion()
+    public string DisplayQuestion()
     {
-        Console.Write($"> {GetRandomQuestion()} ");
+        string question = GetRandomQuestion();
+        Console.Write($"> {question} ");
+        return question;
     }
 }
