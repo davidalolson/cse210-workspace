@@ -16,6 +16,8 @@ class ReflectionActivity : Activity
     }
     public void Run()
     {
+        DisplayStartingMessage();
+
         Console.WriteLine("Consider the following prompt:\n");
         DisplayPrompt();
         Console.WriteLine("When you have something in mind, press enter to continue.");
@@ -32,6 +34,8 @@ class ReflectionActivity : Activity
             ShowSpinner(5);
             Console.WriteLine();
         }
+
+        DisplayEndingMessage();
     }
     public string GetRandomPrompt()
     {

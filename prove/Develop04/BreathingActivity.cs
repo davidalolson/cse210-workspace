@@ -6,6 +6,7 @@ public class BreathingActivity : Activity
     }
     public void Run()
     {
+        DisplayStartingMessage();
         for(int i = _duration/10; i > 0; i--)
         {
                 Console.Write("\nBreathe in...");
@@ -16,5 +17,6 @@ public class BreathingActivity : Activity
 
                 Console.WriteLine();
         }
+        DisplayEndingMessage();
     }
 }

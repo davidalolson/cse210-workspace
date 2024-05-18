@@ -12,12 +12,16 @@ public class ListingActivity: Activity
     }
     public void Run()
     {
+        DisplayStartingMessage();
+
         Console.WriteLine("List as many responses as you can to the following prompt: ");
         GetRandomPrompt();
         Console.Write("You may begin in: ");
         ShowCountDown(5);
         Console.WriteLine();
         Console.WriteLine($"You listed {GetListFromUser().Count()} items!\n");
+
+        DisplayEndingMessage();
     }
     public void GetRandomPrompt()
     {

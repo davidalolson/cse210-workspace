@@ -12,6 +12,8 @@ public class Activity
     }
     public void DisplayStartingMessage()
     {
+        Console.Clear();
+        
         Console.WriteLine($"Welcome to the {_name}");
         Console.WriteLine($"\n{_description}");
         Console.Write($"\nHow long, in seconds, would you like for your session? ");
