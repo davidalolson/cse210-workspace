@@ -1,15 +1,23 @@
 using System;
 
+// child class
 public class ListingActivity: Activity
 {
+    // class instance
     Random random = new Random();
+
+    // attributes
     private int _count;
     private List<string> _prompts;
+    
+    // ues base constructor with additional prompts parameter
     public ListingActivity(string name, string description, List<string> prompts) : base(name, description)
     {
         _prompts = new List<string>();
         _prompts = prompts;
     }
+
+    // methods
     public void Run()
     {
         DisplayStartingMessage();
@@ -19,7 +27,7 @@ public class ListingActivity: Activity
         Console.Write("You may begin in: ");
         ShowCountDown(GLOBAL_SYNC_DELAY);
         Console.WriteLine();
-        Console.WriteLine($"You listed {GetListFromUser().Count()} items!\n");
+        Console.WriteLine($"You listed {GetListFromUser().Count()} items!\n");  // standard operation happens in this line
 
         DisplayEndingMessage();
     }
@@ -29,8 +37,9 @@ public class ListingActivity: Activity
     }
     public List<string> GetListFromUser()
     {
-        List<string> strings = new List<string>();
+        List<string> strings = new List<string>();  // use to temporarily hold list
 
+        // get time to allow real time tracking
         DateTime startTime = DateTime.Now;
         DateTime currentTime = DateTime.Now;
         DateTime futureTime = startTime.AddSeconds(_duration);
@@ -40,7 +49,7 @@ public class ListingActivity: Activity
             Console.Write(">");
             strings.Add(Console.ReadLine());
             
-            currentTime = DateTime.Now;
+            currentTime = DateTime.Now; // check time again
         }
         return strings;
     }

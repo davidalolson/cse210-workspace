@@ -1,11 +1,19 @@
 using System;
 using System.Runtime.InteropServices;
 
+// child class
 class ReflectionActivity : Activity
 {
+    // class instance
     Random random = new Random();
+    
+    // attributes
     private List<string> _prompts;
     private List<string> _questions;
+
+    private List<int> _questionHistory;
+
+    // use base constructor with additional prompts and questions parameters
     public ReflectionActivity(string name, string description, List<string> prompts, List<string> questions) : base(name, description)
     {
         _prompts = new List<string>();
@@ -14,11 +22,13 @@ class ReflectionActivity : Activity
         _questions = new List<string>();
         _questions = questions;
 
-        
+        _questionHistory = new List<int>();
     }
+
+    // methods
     public void Run()
     {
-        string testQuestion = "";
+        string testQuestion = "";   // use to detect if every question in _questions has been asked
         DisplayStartingMessage();
 
         Console.WriteLine("\nConsider the following prompt:\n");
@@ -34,7 +44,7 @@ class ReflectionActivity : Activity
         for(int i = _duration/5; i > 0; i--)
         {
             
-            if(testQuestion != "ABORT:EMPTY")
+            if(testQuestion != "ABORT:EMPTY")   // stop if out of questions
             {
                 testQuestion = DisplayQuestion();
                 ShowSpinner(GLOBAL_SYNC_DELAY);
@@ -42,6 +52,7 @@ class ReflectionActivity : Activity
             }
         }
 
+        _questionHistory.Clear();
         DisplayEndingMessage();
     }
     public string GetRandomPrompt()
@@ -51,13 +62,21 @@ class ReflectionActivity : Activity
     public string GetRandomQuestion()
     {
         string question = "ABORT:EMPTY";
-        int idx = random.Next(0, _questions.Count());
 
-        if(_questions.Count() != 0)
+        int idx = random.Next(0, _questions.Count());       // logic to ensure that each question is only asked once
+
+        if(_questionHistory.Count() < _questions.Count())
         {
+            while(_questionHistory.Contains(idx))
+            {
+                idx = random.Next(0, _questions.Count());
+            }
+
             question = _questions[idx];
-            _questions.RemoveAt(idx);
+            _questionHistory.Add(idx);
         }
+            
+
 
         return question;
     }
