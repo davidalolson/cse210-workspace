@@ -17,11 +17,11 @@ public class ChecklistGoal : Goal
     }
 
     // methods
-    public override void RecordEvent()                  // (?)
+    public override void RecordEvent()                 
     {
         _amountCompleted += 1;
     }
-    public override bool IsComplete()                   // (?)
+    public override bool IsComplete()                   
     {
         if(_amountCompleted == _target)
         {
@@ -33,7 +33,7 @@ public class ChecklistGoal : Goal
     {
         return $"{base.GetDetailsString()} -- Currently completed: {_amountCompleted}/{_target}";
     }
-    public override string GetStringRepresentation()    // (?)
+    public override string GetStringRepresentation()    
     {
         return $"{base.GetStringRepresentation()},{_target},{_bonus},{_amountCompleted}";
     }
