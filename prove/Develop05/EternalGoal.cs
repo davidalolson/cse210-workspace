@@ -5,21 +5,21 @@
 public class EternalGoal : Goal
 {
     // constructor
-    public EternalGoal(string name, string description, string points) : base(name, description, points)
+    public EternalGoal(string name, string description, int points) : base(name, description, points)
     {
                                                         // no additional attributes
     }
     public override void RecordEvent()                  // (?)
     {
-        throw new NotImplementedException();
+        // nothing to record here...
     }
     public override bool IsComplete()                   // (?)
     {
-        throw new NotImplementedException();
+        return base.IsComplete();
     }
     public override string GetStringRepresentation()    // (?)
     {
-        throw new NotImplementedException();
+        return base.GetStringRepresentation();
     }
 
 }
