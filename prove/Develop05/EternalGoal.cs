@@ -9,15 +9,15 @@ public class EternalGoal : Goal
     {
                                                         // no additional attributes
     }
-    public override void RecordEvent()                  // (?)
+    public override void RecordEvent()                
     {
         // nothing to record here...
     }
-    public override bool IsComplete()                   // (?)
+    public override bool IsComplete()                  
     {
         return base.IsComplete();
     }
-    public override string GetStringRepresentation()    // (?)
+    public override string GetStringRepresentation()    
     {
         return base.GetStringRepresentation();
     }

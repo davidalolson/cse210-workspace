@@ -14,15 +14,15 @@ public class SimpleGoal : Goal
     }
 
     // methods
-    public override void RecordEvent()                  // (?)
+    public override void RecordEvent()           
     {
         _isComplete = true;
     }
-    public override bool IsComplete()                   // (?)
+    public override bool IsComplete()                 
     {
         return _isComplete;
     }
-    public override string GetStringRepresentation()    // (?)
+    public override string GetStringRepresentation()    
     {
         return $"{base.GetStringRepresentation()},{IsComplete()}";
     }
