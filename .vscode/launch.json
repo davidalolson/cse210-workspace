@@ -4,6 +4,19 @@
     "configurations": [
 
         {
+            "name": "expensiveplanetarium",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-expensiveplanetarium",
+            "program": "${workspaceFolder}/expensiveplanetarium/bin/Debug/net8.0/expensiveplanetarium.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/expensiveplanetarium",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "stopAtEntry": false
+        },
+
+        {
             "name": "Sandbox Project",
             "type": "coreclr",
             "request": "launch",
