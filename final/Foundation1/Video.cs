@@ -23,7 +23,7 @@ public class Video
         return _comments.Count;                         // count number of comments
     }
     public void DisplayDetails() {
-        Console.WriteLine($"Title: {_title}, Author: {_author}, Length: {_length}, Number of Comments: {NumberOfComments()}");
+        Console.WriteLine($"Title: {_title}, Author: {_author}, Length: {_length} seconds, Number of Comments: {NumberOfComments()}");
     }
     public void DisplayComments() {                     // display all comments
         foreach(Comment comment in _comments)
