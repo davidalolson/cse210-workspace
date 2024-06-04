@@ -18,9 +18,9 @@ public class Address
     // methods
     public bool IsForeign()
     {
-        return _country != "United States";                   // return the result of this test case
+        return _country != "United States";                     // return the result of this test case
     }
-    public string FormatAddress()                   // return a string in packing label format
+    public string FormatAddress()                               // return a string in packing label format
     {
         return $"{_street}\n{_city}, {_state}, {_country}";
     }
